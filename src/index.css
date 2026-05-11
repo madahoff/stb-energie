@@ -1,0 +1,220 @@
+@import url('@fontsource/montserrat/400.css');
+@import url('@fontsource/montserrat/500.css');
+@import url('@fontsource/montserrat/600.css');
+@import url('@fontsource/montserrat/700.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* STB énergie Design System */
+    --background: 210 20% 98%;
+    --foreground: 215 35% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 35% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 35% 15%;
+
+    /* Navy blue dominant */
+    --primary: 215 40% 16%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Light gray secondary */
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 215 35% 15%;
+
+    --muted: 210 15% 92%;
+    --muted-foreground: 215 15% 45%;
+
+    /* Green accent */
+    --accent: 160 100% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 160 100% 42%;
+
+    --radius: 1rem;
+
+    /* Custom STB tokens */
+    --stb-navy: 215 40% 16%;
+    --stb-navy-light: 215 35% 22%;
+    --stb-green: 160 100% 42%;
+    --stb-green-light: 160 80% 50%;
+    --stb-gray: 210 15% 55%;
+    --stb-gray-light: 210 15% 75%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(215 40% 16%) 0%, hsl(215 35% 22%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(160 100% 42%) 0%, hsl(160 80% 50%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px hsl(215 40% 16% / 0.08);
+    --shadow-md: 0 8px 24px hsl(215 40% 16% / 0.12);
+    --shadow-lg: 0 16px 48px hsl(215 40% 16% / 0.16);
+    --shadow-accent: 0 8px 32px hsl(160 100% 42% / 0.3);
+
+    /* Sidebar defaults */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 215 40% 12%;
+    --foreground: 210 20% 98%;
+
+    --card: 215 35% 18%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 215 35% 18%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 160 100% 42%;
+    --primary-foreground: 215 40% 12%;
+
+    --secondary: 215 30% 22%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 215 30% 25%;
+    --muted-foreground: 210 15% 65%;
+
+    --accent: 160 100% 42%;
+    --accent-foreground: 215 40% 12%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 30% 25%;
+    --input: 215 30% 25%;
+    --ring: 160 100% 42%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .card-stb {
+    @apply bg-card rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-accent-foreground hover:opacity-90 transition-all duration-300;
+    box-shadow: var(--shadow-accent);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-accent);
+  }
+
+  .bg-navy {
+    @apply bg-primary;
+  }
+
+  .geometric-shape {
+    @apply absolute rounded-full opacity-20;
+    background: linear-gradient(135deg, hsl(var(--stb-green)) 0%, hsl(var(--stb-green-light)) 100%);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
