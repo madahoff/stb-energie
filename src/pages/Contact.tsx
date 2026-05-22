@@ -3,13 +3,14 @@ import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import emailjs from '@emailjs/browser';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
 
 const contactSchema = z.object({
   nom: z.string().min(2, 'Le nom doit contenir au moins 2 caractères').max(100),
@@ -36,13 +37,38 @@ const Contact = () => {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log('Form submitted:', data);
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    reset();
-    toast.success('Votre message a été envoyé avec succès !');
+    try {
+      const templateParams = {
+        from_name: data.nom,
+        from_email: data.email,
+        phone: data.telephone,
+        subject: data.sujet,
+        message: data.message,
+        reply_to: data.email,
+      };
+
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_NOTIFICATION,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      );
+
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_AUTOREPLY,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      );
+
+      setIsSubmitted(true);
+      reset();
+      toast.success('Votre message a été envoyé avec succès !');
+    } catch {
+      toast.error("Une erreur est survenue. Veuillez réessayer ou nous appeler directement.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
