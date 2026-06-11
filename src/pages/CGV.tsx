@@ -233,7 +233,7 @@ const CGV = () => {
                     </h3>
                     <p>
                       En cas de défaut de paiement par l'Entrepreneur Principal, l'Entreprise se
-                      réserve le droit d'exercer une action directe, conformément aux articles 12
+                      réserve le droit d'exercer une action directe auprès du maitre d'ouvrage, conformément aux articles 12
                       et 14-1 de la loi n°75-1334 du 31 décembre 1975.
                     </p>
                   </div>
