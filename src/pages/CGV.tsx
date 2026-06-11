@@ -198,7 +198,7 @@ const CGV = () => {
                     </h3>
                     <div className="space-y-2">
                       <p>
-                        Conformément à l'article 3 de la loi suscitée, l'Entrepreneur Principal
+                        Conformément à l'article 3 de la loi sus'citée, l'Entrepreneur Principal
                         s'engage à faire accepter l'Entreprise et à faire agréer ses conditions de
                         paiement auprès du Maître d'ouvrage.
                       </p>
